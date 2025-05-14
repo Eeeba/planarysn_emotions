@@ -13,8 +13,9 @@ body{
   min-height: 100vh;
   background: black;
 }
-}
 .wrapper{
+  height: 325px;
+  width: 650px;
   padding: 25px;
   border-radius: 10px;
   background: #F8F8F8;
