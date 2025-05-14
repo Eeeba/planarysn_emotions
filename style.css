@@ -11,16 +11,9 @@ body{
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  animation: background_colors 0.35s ease-in-out;
+  background: black;
 }
-@keyframes background_colors {
-    0% {
-    color: blue
-    }
-    25% {
-    color
-    }
-  }
+}
 .wrapper{
   padding: 25px;
   border-radius: 10px;
