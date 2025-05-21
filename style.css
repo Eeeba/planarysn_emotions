@@ -1,16 +1,10 @@
-h1 {
-  display: flex;
-  align-items: start;
-  position: fixed;
-}
-
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
+  min-height: 100vh;
   background-image: url(planarysn_full.jpg);
-  background-size: 1500px 1100px;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
@@ -69,4 +63,27 @@ body {
 .cards {height: 300px;width: 300px;}
 .card .front-view img {width: 15px;}
 .card .back-view img {max-width: 35px;}
+}
+
+/* timer and play again button */
+#timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 30px;
+  background-color: white;
+  border-radius: 10px;
+  height: 80px;
+  width: 250px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+#continue-btn {
+  cursor: pointer;
+  background-color: lightgreen;
+  font-family:'Courier New', Courier, monospace;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+  font-size: 30px;
+  border-radius: 10px;
+  border-color: green;
 }
