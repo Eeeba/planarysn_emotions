@@ -78,7 +78,7 @@ body {
   width: 250px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
-#continue-btn {
+#play-btn {
   cursor: pointer;
   background-color: lightgreen;
   font-family:'Courier New', Courier, monospace;
@@ -86,4 +86,12 @@ body {
   font-size: 30px;
   border-radius: 10px;
   border-color: green;
+}
+.top-bar {
+  position: absolute;
+  top: 70px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
 }

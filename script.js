@@ -16,7 +16,7 @@ let timerId;
 // status of game over
 let gameStop = false;
 
-const continueBtn = document.getElementById("continue-btn");
+const continueBtn = document.getElementById("play-btn");
 
 function format(seconds) {
     const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
