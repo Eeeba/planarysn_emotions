@@ -1,6 +1,8 @@
     // card variable declarations
 // selects all elements with the card class
 const cards = document.querySelectorAll(".card");
+// continue button element
+const continueBtn = document.getElementById("play-btn");
 // count of the number of pairs matched
 let matched = 0;
 // tracks the two cards flipped at a time
@@ -15,8 +17,6 @@ let time = 60;
 let timerId;
 // status of game over
 let gameStop = false;
-
-const continueBtn = document.getElementById("play-btn");
 
 function format(seconds) {
     const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
@@ -102,16 +102,16 @@ function shuffleCard() {
     let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     shuffle(arr);
 }
-shuffleCard();
-
-    // resets all card faces and clicks for the next round
-cards.forEach(card => {
-    card.addEventListener("click", flipCard);
-});
 
 continueBtn.addEventListener("click", () => {
     // Hide the button again
     continueBtn.style.display = "none";
+
+    // resets all card faces and clicks for the next round
+    cards.forEach(card => {
+        card.classList.remove("flip");
+        card.addEventListener("click", flipCard);
+    });
 
     // Reset time and game state
     clearInterval(timerId);
