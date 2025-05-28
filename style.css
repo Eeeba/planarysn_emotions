@@ -99,6 +99,15 @@ body {
   width: 200px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
+#reshuffle-btn {
+  cursor: pointer;
+  background-color: blue;
+  font-family:'Courier New', Courier, monospace;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+  font-size: 30px;
+  border-radius: 10px;
+  border-color: blue;
+}
 .top-bar {
   position: absolute;
   top: 70px;

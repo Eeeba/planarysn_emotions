@@ -4,6 +4,8 @@
 const cards = document.querySelectorAll(".card");
 // Continue button element
 const continueBtn = document.getElementById("play-btn");
+// Reshuffle button element
+const reshuffleBtn = document.getElementById("reshuffle-btn");
 // Count of the number of pairs matched
 let matched = 0;
 // Tracks the two cards flipped at a time
@@ -19,19 +21,20 @@ let gameStop = false;
 // Score number
 let scoreNumber = 0;
 
-function pointsEarned(scoreDisplay) {
+function pointsEarned() {
     const scoreDisplay = document.getElementById("score");
-    scoreDisplay.textContext = `Score: ${scoreNumber}`;
-    return scoreDisplay;
+    scoreDisplay.textContent = `Score: ${scoreNumber}`;
 }
 
 function pointsAdded() {
     if (time >= 30) {
-        scoreNumber = scoreNumber + 10;
+        scoreNumber += 10;
     }
     else {
-        scoreNumber = scoreNumber + 5;
+        scoreNumber += 5;
     }
+    localStorage.setItem("score", scoreNumber);
+    pointsEarned();
 }
 
     // Timer setup
@@ -44,13 +47,15 @@ function format(seconds) {
 
 function startCountdown() {
     const timerDisplay = document.getElementById("timer");
-    timerDisplay.textContext = `Time: ${format(time)}`;
+    timerDisplay.textContent = `Time: ${format(time)}`;
     timerId = setInterval(() => {
         time--;
         timerDisplay.textContent = `Time: ${format(time)}`;
         if (time <= 0) {
             clearInterval(timerId);
             gameOver();
+            scoreNumber -= 5;
+            pointsEarned();
         }
     }, 1000);
 }
@@ -114,13 +119,13 @@ function shuffleCard() {
     matched = 0;
     disableDeck = false;
     cardOne = cardTwo = "";
-    let array = ["rin", "pierrette", "nori", "yuna", "amber", "abraham", "nicholas", "lenora", "spring",
+    let characters = ["rin", "pierrette", "nori", "yuna", "amber", "abraham", "nicholas", "lenora", "spring",
     "rin", "pierrette", "nori", "yuna", "amber", "abraham", "nicholas", "lenora", "spring"];
-    shuffle(array);
+    shuffle(characters);
     cards.forEach((card, index) => {
         card.classList.remove("flip");
         const img = card.querySelector(".back-view img");
-        img.src = `behind/${array[index]}.png`;
+        img.src = `behind/${characters[index]}.png`;
         card.addEventListener("click", flipCard);
     });
 }
@@ -148,7 +153,7 @@ continueBtn.addEventListener("click", () => {
     // Reset time and game state
     shuffleCard();
     clearInterval(timerId);
-    pointsEarned(scoreDisplay);
+    pointsEarned();
     // Flip all cards back and re-add click events
     cards.forEach(card => {
         card.classList.remove("flip");
@@ -156,3 +161,25 @@ continueBtn.addEventListener("click", () => {
     });
     startCountdown();
 });
+
+    // Reshuffle
+
+reshuffleBtn.addEventListener("click", () => {
+    // Variable declarations reset
+    time = 60;
+    gameStop = false;
+    matched = 0;
+    scoreNumber = scoreNumber;
+    cardOne = cardTwo = "";
+    disableDeck = false;
+    // Reset time and game state
+    shuffleCard();
+    clearInterval(timerId);
+    pointsEarned();
+    // Flip all cards back and re-add click events
+    cards.forEach(card => {
+        card.classList.remove("flip");
+        card.addEventListener("click", flipCard);
+    });
+    startCountdown();
+})
