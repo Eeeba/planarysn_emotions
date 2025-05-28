@@ -16,6 +16,23 @@ let time = 60;
 let timerId;
 // Status of game over
 let gameStop = false;
+// Score number
+let scoreNumber = 0;
+
+function pointsEarned(scoreDisplay) {
+    const scoreDisplay = document.getElementById("score");
+    scoreDisplay.textContext = `Score: ${scoreNumber}`;
+    return scoreDisplay;
+}
+
+function pointsAdded() {
+    if (time >= 30) {
+        scoreNumber = scoreNumber + 10;
+    }
+    else {
+        scoreNumber = scoreNumber + 5;
+    }
+}
 
     // Timer setup
 
@@ -62,6 +79,7 @@ function matchCards(img1, img2) {
     matched++;
         // If there are nine matched pairs, the timer stops and the continue button is displayed
         if(matched == 9) {
+        pointsAdded();   
         setTimeout(() => {
         clearInterval(timerId); 
         continueBtn.style.display = "inline-block"; 
@@ -96,14 +114,21 @@ function shuffleCard() {
     matched = 0;
     disableDeck = false;
     cardOne = cardTwo = "";
-    let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let array = ["rin", "pierrette", "nori", "yuna", "amber", "abraham", "nicholas", "lenora", "spring",
+    "rin", "pierrette", "nori", "yuna", "amber", "abraham", "nicholas", "lenora", "spring"];
     shuffle(array);
+    cards.forEach((card, index) => {
+        card.classList.remove("flip");
+        const img = card.querySelector(".back-view img");
+        img.src = `behind/${array[index]}.png`;
+        card.addEventListener("click", flipCard);
+    });
 }
 
 function gameOver() {
     gameOver = true;
     disableDeck = true;
-    alert("Time's up! Game over.");
+    alert("GAME OVER ^w^");
     cards.forEach(card => card.removeEventListener("click", flipCard));
     continueBtn.style.display = "inline-block";
 }
@@ -113,18 +138,21 @@ function gameOver() {
 continueBtn.addEventListener("click", () => {
     // Hides the button
     continueBtn.style.display = "none";
-    // Reset time and game state
-    clearInterval(timerId);
+    // Variable declarations reset
     time = 60;
     gameStop = false;
     matched = 0;
+    scoreNumber = scoreNumber;
     cardOne = cardTwo = "";
     disableDeck = false;
+    // Reset time and game state
+    shuffleCard();
+    clearInterval(timerId);
+    pointsEarned(scoreDisplay);
     // Flip all cards back and re-add click events
     cards.forEach(card => {
         card.classList.remove("flip");
         card.addEventListener("click", flipCard);
     });
-    shuffleCard();
     startCountdown();
 });
