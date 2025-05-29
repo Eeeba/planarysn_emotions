@@ -6,6 +6,10 @@ const cards = document.querySelectorAll(".card");
 const continueBtn = document.getElementById("play-btn");
 // Reshuffle button element
 const reshuffleBtn = document.getElementById("reshuffle-btn");
+reshuffleBtn.style.display = "none";
+const scoreDisplay = document.getElementById("score");
+const messageBox = document.getElementById("box");
+const lofiAudio = document.getElementById('background-audio');
 // Count of the number of pairs matched
 let matched = 0;
 // Tracks the two cards flipped at a time
@@ -22,7 +26,6 @@ let gameStop = false;
 let scoreNumber = 0;
 
 function pointsEarned() {
-    const scoreDisplay = document.getElementById("score");
     scoreDisplay.textContent = `Score: ${scoreNumber}`;
 }
 
@@ -81,13 +84,15 @@ function flipCard({target: clickedCard}) {
 function matchCards(img1, img2) {
     // If card one and card two match, add one to the matched pairs
     if(img1 === img2) {
+    messageBox.textContent = "You matched a pair. :)";
     matched++;
         // If there are nine matched pairs, the timer stops and the continue button is displayed
         if(matched == 9) {
         pointsAdded();   
         setTimeout(() => {
         clearInterval(timerId); 
-        continueBtn.style.display = "inline-block"; 
+        continueBtn.style.display = "inline-block";
+        messageBox.textContent = "You won the round."; 
         });
         }
         // Keeps matched cards flipped
@@ -98,6 +103,7 @@ function matchCards(img1, img2) {
     }
     // Flips cards that don't match
     setTimeout(() => {
+        messageBox.textContent = "No match. :(";
         cardOne.classList.remove("flip");
         cardTwo.classList.remove("flip");
         cardOne = cardTwo = "";
@@ -133,14 +139,16 @@ function shuffleCard() {
 function gameOver() {
     gameOver = true;
     disableDeck = true;
-    alert("GAME OVER ^w^");
+    messageBox.textContent = "You lost the round.";
     cards.forEach(card => card.removeEventListener("click", flipCard));
     continueBtn.style.display = "inline-block";
 }
 
     // Game start
-
 continueBtn.addEventListener("click", () => {
+    lofiAudio.muted = false;
+    lofiAudio.play();
+    reshuffleBtn.style.display = "inline-block";
     // Hides the button
     continueBtn.style.display = "none";
     // Variable declarations reset
@@ -160,6 +168,7 @@ continueBtn.addEventListener("click", () => {
         card.addEventListener("click", flipCard);
     });
     startCountdown();
+    messageBox.textContent = "The round has started.";
 });
 
     // Reshuffle
@@ -182,4 +191,5 @@ reshuffleBtn.addEventListener("click", () => {
         card.addEventListener("click", flipCard);
     });
     startCountdown();
+    messageBox.textContent = "The memory cards have been shuffled.";
 })

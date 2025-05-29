@@ -1,13 +1,31 @@
+/* body organization */
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-image: url(planarysn_full.jpg);
-  background-size: auto;
-  background-repeat: no-repeat;
+  min-height: 110vh;
+  background-color: rgb(255, 197, 80);
 }
 
+h1 {
+  font-family:'Courier New', Courier, monospace;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 10px;
+  z-index: 100;
+  height: 50px;
+  width: 800px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px red, 0px 10px 5px yellow, 0px 15px 10px green, 0px 20px 10px royalblue;
+}
+
+/* table */
 .wrapper {
   height: 315px;
   width: 660px;
@@ -16,6 +34,7 @@ body {
   box-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
 
+/* card placement */
 .card, .cards, .view {
   display: grid;
   grid-template-columns: repeat(6, 100px);
@@ -30,6 +49,7 @@ body {
   position: relative;
 }
 
+/* card appearance */
 .card .view {
   width: 100%;
   height: 100%;
@@ -65,7 +85,7 @@ body {
 .card .back-view img {max-width: 35px;}
 }
 
-/* timer and play again button */
+/* timer, play button, score keeper, reshuffle button, and message box */
 #timer {
   display: flex;
   align-items: center;
@@ -101,18 +121,44 @@ body {
 }
 #reshuffle-btn {
   cursor: pointer;
-  background-color: blue;
+  background-color: rgba(60, 150, 250);
   font-family:'Courier New', Courier, monospace;
   box-shadow: 0 3px 10px rgba(0,0,0,0.5);
   font-size: 30px;
   border-radius: 10px;
   border-color: blue;
 }
-.top-bar {
+#box {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 20px;
+  color: white;
+  background-color: black;
+  height: 30px;
+  width: 450px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+  opacity: 0.9;
+}
+
+/* top bar and bottom bar classes */
+div.top-bar{
+  padding-top: 0px;
   position: absolute;
-  top: 70px;
+  top: 150px;
   display: flex;
   justify-content: center;
   gap: 10px;
   z-index: 10;
+}
+div.bottom-bar{
+  position: absolute;
+  top: 600px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 0;
 }
