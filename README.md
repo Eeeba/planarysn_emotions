@@ -16,7 +16,7 @@
 # PLANARYSN EMOTIONS Directions
 
     - Timer is set to 1 minute.
-    - Each time you finish memorizing a whole chart of cards over 45 seconds, you will get 5 points.
-    - Each time you finish memorizing a whole chart of cards under 45 seconds, you will get 10 points.
+    - Each time you finish memorizing a whole chart of cards over 30 seconds, you will get 5 points.
+    - Each time you finish memorizing a whole chart of cards under 30 seconds, you will get 10 points.
     - If you lose a round, you will be deducted by 5 points.
     - Once you lose all of your points, it is game over.

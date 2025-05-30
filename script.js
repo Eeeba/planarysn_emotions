@@ -25,10 +25,14 @@ let gameStop = false;
 // Score number
 let scoreNumber = 0;
 
+    // Score setup
+
+// Updates the points earned
 function pointsEarned() {
     scoreDisplay.textContent = `Score: ${scoreNumber}`;
 }
 
+// Adds a certain number of points based on whether the time is over or under 30 seconds
 function pointsAdded() {
     if (time >= 30) {
         scoreNumber += 10;
@@ -48,6 +52,7 @@ function format(seconds) {
     return `${mins}:${secs}`;       
 }
 
+// Countdown from one minute for timer
 function startCountdown() {
     const timerDisplay = document.getElementById("timer");
     timerDisplay.textContent = `Time: ${format(time)}`;
@@ -111,7 +116,7 @@ function matchCards(img1, img2) {
         }, 1000);
 }
 
-    // Randomizer shuffle function
+// Randomizer shuffle function
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -120,7 +125,7 @@ function shuffle(array) {
     return array;
 }
 
-    // Shuffles the cards
+// Shuffles the cards
 function shuffleCard() {
     matched = 0;
     disableDeck = false;
@@ -136,6 +141,7 @@ function shuffleCard() {
     });
 }
 
+// Handles the game over status
 function gameOver() {
     gameOver = true;
     disableDeck = true;
@@ -145,6 +151,7 @@ function gameOver() {
 }
 
     // Game start
+
 continueBtn.addEventListener("click", () => {
     lofiAudio.muted = false;
     lofiAudio.play();
