@@ -2,7 +2,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 110vh;
   background-color: rgb(255, 197, 80);
 }
 
@@ -26,6 +25,8 @@ h1 {
 
 /* table */
 .wrapper {
+  position: absolute;
+  top: 250px;
   height: 315px;
   width: 660px;
   background-color: white;
@@ -145,7 +146,6 @@ h1 {
 
 /* top bar and bottom bar classes */
 div.top-bar{
-  padding-top: 0px;
   position: absolute;
   top: 150px;
   display: flex;
